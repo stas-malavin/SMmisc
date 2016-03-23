@@ -1,0 +1,1 @@
+cleantmp <- function() rm(list = ls(pattern = '^tmp'))
