@@ -1,8 +1,9 @@
-# This file mostly describe regular expressions as in R (POSIX BRE and ERE), but also partly covers vim patterns and flags
+# RegExp notes
+This file mostly describes regular expressions as in R (POSIX BRE and ERE), but also partly covers vim patterns and flags
 
 ## NB!
-All escapings in R's regexps should _be double-escaped_ (unlike using in, e.g. cat() or writeLines() call)
-This also concerns replacement patterns, e.g. '\\1' for backreferencing.
+All escapings in R's regexps should _be double-escaped_ (unlike using in, e.g. `cat()` or `writeLines()` call)
+This also concerns replacement patterns, e.g. `\\1` for backreferencing.
 
 `. () []` and so on _without escaping_ are _special symbols_ (unlike in vim)
 
@@ -39,13 +40,13 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 
 `\B` - empty string provided it is not at an edge of a word
 
-`\w` - word (a synonym for ‘[[:alnum:]_]’)
+`\w` - word (a synonym for `[[:alnum:]_]`)
 
 `\W` - its negation
 
 `\1 ... \9` - numbered backreference
 
-`\U \L` - change the text inserted by all following backreferences to uppercase or lowercase ([Ex.2][e2])
+`\U \L` - change the text inserted by all following backreferences to uppercase or lowercase [Ex.2]
 
 `\E` - insert the following backreferences without any change of case
 
@@ -58,9 +59,9 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 
 `(?: )` - grooping without capturing
 
-`(regex)*` - modifier '*' belongs to the whole group in `()` - ([Ex.3][e3])
+`(regex)*` - modifier '*' belongs to the whole group in `()` [Ex.3]
 
-`(regex1) | (regex2)` - regex1 OR regex2 - ([Ex.4][e4])
+`(regex1) | (regex2)` - regex1 OR regex2 [Ex.4]
 
 `{}` - quantifier (see below)
 
@@ -71,7 +72,7 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 
 `[:blank:]` - Blank characters: space and tab, and possibly other locale-dependent characters such as non-breaking space
 
-`[:cntrl:]` - Control characters. In ASCII, these characters have octal codes 000 through 037, and 177 (‘DEL’). In another character set, these are the equivalent characters, if any
+`[:cntrl:]` - Control characters. In ASCII, these characters have octal codes 000 through 037, and 177 (DEL). In another character set, these are the equivalent characters, if any
 
 `[:digit:]` - Digits: `0 1 2 3 4 5 6 7 8 9`
 
@@ -81,7 +82,7 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 
 `[:print:]` - Printable characters: `[:alnum:]`, `[:punct:]` and space
 
-`[:punct:]` - Punctuation characters: `! " $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~`
+`[:punct:]` - Punctuation characters: ``! " $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~``
 
 `[:space:]` - Space characters: tab, newline, vertical tab, form feed, carriage return, space and possibly other locale-dependent characters
 
@@ -98,7 +99,7 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 ## Modifiers and Quantifiers
 `?` - The preceding item is optional and will be matched at most once
 
-(In vim's search '=' is used for that, e.g. `/files\=`)
+(In vim's search syntax `=` is used for that, e.g. `/files\=`)
 
 `*` - The preceding item will be matched zero or more times
 
@@ -110,9 +111,9 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 
 `{n,m}` - The preceding item is matched at least ‘n’ times, but not more than ‘m’ times
 
-Normally a repeated expression is greedy, that is, it matches as many characters as possible.
+Normally, a repeated expression is greedy, that is, it matches as many characters as possible.
 
-{ }? makes the quantifier minimal, or non-greedy (also works for one-character quantifiers like *? ).
+`{ }?` makes the quantifier minimal, or non-greedy (also works for one-character quantifiers, like `*?` ).
 A non-greedy subexpression matches as few characters as possible.
 (vim uses `{- , }` for that, e.g. `/ab\{-1,3}`)
 
