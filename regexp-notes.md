@@ -1,37 +1,35 @@
 # This file mostly describe regular expressions as in R (POSIX BRE and ERE), but also partly covers vim patterns and flags
 
----
 ## NB!
-All escapings in R's regexps should be DOUBLE-ESCAPED! [unlike using in, e.g. cat() or writeLines() call]
+All escapings in R's regexps should _be double-escaped_ [unlike using in, e.g. cat() or writeLines() call]
 This also concerns replacement patterns, e.g. '\\1' for backreferencing.
----
 
-`. () []` and so on WITHOUT ESCAPING ARE SPECIAL SYMBOLS! (unlike in vim)
+`. () []` and so on _without escaping_ are _special symbols_ [unlike in vim]
 
 In vim _all special symbols_ but `. * ^ $` _should be single-escaped_!
 
-'.', '*', '^', '$' in vim _without escaping_ are special symbols, and _being escaped_ mean literally what they are.
+`. * ^ $` in vim _without escaping_ are special symbols, and _being escaped_ mean literally what they are.
 
 ## Escapings 
-\a - BEL
-\e - ESC
-\f - FF
-\n - LF
-\r - CR
-\t - TAB
-\d - digit class
-\D - its negation
-\s - space class
-\S - its negation
-\< - empty string at the beginning of the word ('word' is locale-dependent)
-\> - empty string at the end of the word
-\b - previous two both
-\B - empty string provided it is not at an edge of a word
-\w - word (a synonym for ‘[[:alnum:]_]’)
-\W - its negation
-\1 ... \9 - numbered backreference
-\U, \L - change the text inserted by all following backreferences to uppercase or lowercase	Ex.2
-\E - insert the following backreferences without any change of case
+`\a` BEL
+`\e` ESC
+`\f` FF
+`\n` - LF
+`\r` - CR
+`\t` - TAB
+`\d` - digit class
+`\D` - its negation
+`\s` - space class
+`\S` - its negation
+`\<` - empty string at the beginning of the word ('word' is locale-dependent)
+`\>` - empty string at the end of the word
+`\b` - previous two both
+`\B` - empty string provided it is not at an edge of a word
+`\w` - word (a synonym for ‘[[:alnum:]_]’)
+`\W` - its negation
+`\1 ... \9` - numbered backreference
+`\U \L` - change the text inserted by all following backreferences to uppercase or lowercase	Ex.2
+`\E` - insert the following backreferences without any change of case
 
 ## Parentheses
 [a,b,c-e] - a OR b OR c OR d OR e
@@ -74,7 +72,6 @@ Normally a repeated expression is greedy, that is, it matches as many characters
 A non-greedy subexpression matches as few characters as possible.
 [vim uses {- , } e.g. /ab\{-1,3}]
 
----
 ## Examples
 ### vim
 
@@ -97,6 +94,7 @@ gsub("(a+)", "z\\1z", c("abc", "def", "cba a", "aa"), perl=TRUE)
 taxa <- c("Limulus polyphemus  ", "Gammaridae ", "Amphipoda", " macoma balthica", "Babr   baikali")
 taxa <- sub('\\+$', '', sub('^\\s*(\\w+)\\s*(\\w*)\\s*', '\\1\\+\\2', taxa))
 # Remove extra spaces and turn a space between genus and species into plus sign
+```
 7.
 ```
 Species <- "Gammarus tigrinus Sexton, 1939"
