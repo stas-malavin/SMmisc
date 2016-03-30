@@ -59,7 +59,7 @@ In vim _all special symbols_ but `. * ^ $` _should be single-escaped!_
 
 `(?: )` - grooping without capturing
 
-`(regex)*` - modifier '*' belongs to the whole group in `()` [Ex.3]
+`(regex)*` - modifier `*` belongs to the whole group in `()` [Ex.3]
 
 `(regex1) | (regex2)` - regex1 OR regex2 [Ex.4]
 
